@@ -175,8 +175,9 @@ Returns the new URI."
       (when (client-debug? client)
         (display response)
         (newline))
-      ;; TODO: Handle the result.
-      #t)))
-      ;; (json-string->scm (bytevector->string response-body "UTF-8")))))
+      (if response-body
+          (json-string->scm (bytevector->string response-body "UTF-8"))
+          ;; Gitlab server doesn't send a response on success.
+          #t))))
 
 ;;; client.scm ends here.
