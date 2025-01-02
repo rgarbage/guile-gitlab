@@ -40,7 +40,9 @@
             client-server-uri
             client-get
             client-put
+            client-put-form
             client-post
+            client-post-form
             client-delete
             uri-parameters->string
             client-debug?))
@@ -147,6 +149,19 @@ Returns the new URI."
         (newline))
       (json-string->scm (bytevector->string response-body "UTF-8")))))
 
+(define* (client-put-form client resource
+                          #:key
+                          (query '()))
+  (let ((uri (client-build-uri client resource query)))
+    (receive (response response-body)
+        (http-put uri
+                  #:headers `((Private-Token . ,(client-token client)))
+                  #:port    (open-socket-for-uri uri))
+      (when (client-debug? client)
+        (display response)
+        (newline))
+      (json-string->scm (bytevector->string response-body "UTF-8")))))
+
 (define* (client-post client resource body
                       #:key
                       (query '()))
@@ -158,6 +173,19 @@ Returns the new URI."
                                (Private-Token . ,(client-token client)))
                    #:port    (open-socket-for-uri uri)
                    #:body    json-body)
+      (when (client-debug? client)
+        (display response)
+        (newline))
+      (json-string->scm (bytevector->string response-body "UTF-8")))))
+
+(define* (client-post-form client resource
+                           #:key
+                           (query '()))
+  (let ((uri       (client-build-uri client resource query)))
+    (receive (response response-body)
+        (http-post uri
+                   #:headers `((Private-Token . ,(client-token client)))
+                   #:port    (open-socket-for-uri uri))
       (when (client-debug? client)
         (display response)
         (newline))
