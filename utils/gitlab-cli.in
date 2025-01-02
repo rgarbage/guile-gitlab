@@ -16,7 +16,8 @@
              (gitlab cli user)
              (gitlab cli group)
              (gitlab cli project)
-             (gitlab cli version))
+             (gitlab cli version)
+             (gitlab cli notes))
 
 
 
@@ -28,6 +29,7 @@ Commands:
   user        Operations on GitLab users.
   group       Operations on GitLab groups.
   project     Operations on GitLab projects.
+  notes       Operations on GitLab notes (comments).
   version     Get GitLab instance version information.
   help        Print this message and exit.
 
@@ -44,6 +46,7 @@ Global options that are available for all commands:
   `((("user")          ,gitlab-cli-user)
     (("group")         ,gitlab-cli-group)
     (("project")       ,gitlab-cli-project)
+    (("notes")         ,gitlab-cli-notes)
     (("version")       ,gitlab-cli-version)
     (("help" "h")      ,print-help)))
 
