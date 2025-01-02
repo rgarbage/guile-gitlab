@@ -27,6 +27,7 @@ SOURCES = \
 	user.scm	\
 	group.scm	\
 	project.scm	\
+	notes.scm	\
 	version.scm
 
 SUFFIXES = .scm .go
