@@ -33,6 +33,7 @@
   #:use-module (gitlab api group)
   #:use-module (gitlab api project)
   #:use-module (gitlab api version)
+  #:use-module (gitlab api notes)
   #:re-export (<session>
                gitlab-session-token
                gitlab-session-client
@@ -41,6 +42,11 @@
                gitlab-api-users-delete
                gitlab-api-groups-get
                gitlab-api-projects-get
-               gitlab-api-version-get))
+               gitlab-api-version-get
+               gitlab-api-notes-list
+               gitlab-api-notes-get
+               gitlab-api-notes-create
+               gitlab-api-notes-edit
+               gitlab-api-notes-delete))
 
 ;;; gitlab.scm ends here.
